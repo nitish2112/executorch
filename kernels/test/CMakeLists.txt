@@ -67,7 +67,7 @@ add_custom_target(
     "${CMAKE_CURRENT_BINARY_DIR}/include/optimized/executorch/kernels/test/supported_features.cpp"
 )
 
-add_library(test_util UnaryUfuncRealHBToFloatHTest.cpp)
+add_library(test_util UnaryUfuncRealHBBF16ToFloatHBF16Test.cpp)
 target_include_directories(
   test_util PRIVATE "${CMAKE_INSTALL_PREFIX}/include"
 )
