@@ -69,7 +69,11 @@ class UnaryUfuncRealHBToFloatHTest : public OperatorTest {
     op_out(tf_in.make({1, 6}, test_vector), out);
 
     auto expected = tf_out.make({1, 6}, expected_vector);
-    EXPECT_TENSOR_CLOSE(out, expected);
+    if (IN_DTYPE == ScalarType::Half || OUT_DTYPE == ScalarType::Half) {
+      EXPECT_TENSOR_CLOSE_WITH_TOL(out, expected, executorch::runtime::testing::internal::kDefaultHalfAtol, executorch::runtime::testing::internal::kDefaultAtol);
+    } else {
+      EXPECT_TENSOR_CLOSE(out, expected);
+    }
     // clang-format on
   }
 
